@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Produto</h1>
+        <input type="text" id="search" placeholder="Pesquisar produtos..." onchange="filtrarProdutos()">
+        <select id="ordenar" onchange="atualizarProdutos()">
+            <optio
+            n value="name-asc">Nome (A-Z)</option>
+            <option value="name-desc">Nome (Z-A)</option>
+            <option value="value-asc">Preço (menor para maior)</option>
+            <option value="value-desc">Preço (maior para menor)</option>
+        </select>
+
+        <div id="produtos-container" class="produtos-container">
+            <!-- Produtos serão inseridos aqui -->
+        </div>
+        <div class="total-produtos">
+            <span><span id="total-produtos"></span></span>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            atualizarProdutos(); 
+        });
+    </script>
+</body>
+</html>
