@@ -12,21 +12,19 @@
         <h1>Produto</h1>
         <input type="text" id="search" placeholder="Pesquisar produtos..." onchange="filtrarProdutos()">
         <select id="ordenar" onchange="atualizarProdutos()">
-            <optio
-            n value="name-asc">Nome (A-Z)</option>
+            <option value="name-asc">Nome (A-Z)</option>
             <option value="name-desc">Nome (Z-A)</option>
             <option value="value-asc">Preço (menor para maior)</option>
             <option value="value-desc">Preço (maior para menor)</option>
         </select>
 
         <div id="produtos-container" class="produtos-container">
-            <!-- Produtos serão inseridos aqui -->
+            
         </div>
         <div class="total-produtos">
             <span><span id="total-produtos"></span></span>
         </div>
     </div>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -35,3 +33,4 @@
     </script>
 </body>
 </html>
+

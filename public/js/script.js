@@ -1,10 +1,18 @@
+document.addEventListener("DOMContentLoaded", function() {
+    atualizarProdutos(); 
+});
+
 function atualizarProdutos() {
     console.log("Carregando produtos...");
+
+    
     const select = document.getElementById("ordenar");
     const criterio = select.value.split("-");
-
     const sortBy = criterio[0];
     const order = criterio[1];
+
+    
+    const searchTerm = document.getElementById("search").value.toLowerCase();
 
     fetch(`http://localhost:8080/produto?sortBy=${sortBy}&order=${order}`)
         .then(response => {
@@ -17,7 +25,14 @@ function atualizarProdutos() {
             const produtosContainer = document.getElementById('produtos-container');
             produtosContainer.innerHTML = '';
 
-            data.forEach(produto => {
+           
+            const produtosFiltrados = data.filter(produto => {
+                const nome = produto.nome.toLowerCase();
+                return nome.includes(searchTerm);
+            });
+
+            
+            produtosFiltrados.forEach(produto => {
                 const produtoDiv = document.createElement('div');
                 produtoDiv.classList.add('produto');
 
@@ -30,7 +45,8 @@ function atualizarProdutos() {
                 produtosContainer.appendChild(produtoDiv);
             });
 
-            document.getElementById('total-produtos').innerText = `Total de produtos: ${data.length}`;
+            
+            document.getElementById('total-produtos').innerText = `Total de produtos: ${produtosFiltrados.length}`;
         })
         .catch(error => {
             console.error("Erro ao atualizar produtos:", error);
@@ -38,16 +54,7 @@ function atualizarProdutos() {
 }
 
 function filtrarProdutos() {
-    const searchTerm = document.getElementById("search").value.toLowerCase();
-    const produtos = document.querySelectorAll(".produto");
-
-    produtos.forEach(produto => {
-        const nome = produto.querySelector("h3").textContent.toLowerCase();
-
-        if (nome.includes(searchTerm)) {
-            produto.style.display = "";
-        } else {
-            produto.style.display = "none";
-        }
-    });
+    
+    atualizarProdutos();
 }
+
